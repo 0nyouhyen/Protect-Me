@@ -829,7 +829,7 @@ MonoBehaviour:
   stageClearPanel: {fileID: 2001167750}
   stageClearSound: {fileID: 8300000, guid: 3b7cea2252b4b6b45bab4864f9faeef8, type: 3}
   gameOverSound: {fileID: 8300000, guid: 2fc58d986242aa845b0c76cfcba21fcc, type: 3}
-  soundVolume: 0.446
+  soundVolume: 0.249
 --- !u!1 &218928149
 GameObject:
   m_ObjectHideFlags: 0
