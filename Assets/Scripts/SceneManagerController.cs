@@ -22,16 +22,16 @@ public class SceneManagercontroller : MonoBehaviour
         }
     }
 
-    // 💡 휴식 스테이지 이동
+    // 휴식 스테이지 이동
     public void GoToRestStage()
     {
         LoadSceneByName("RestStage");
     }
 
-    // 💡 [추가] 타이틀 씬 이동
+    // 타이틀 씬 이동
     public void GoToTitle()
     {
-        LoadSceneByName("Title"); // ⚠️ 실제 타이틀 씬 파일 이름(예: Title 또는 TitleScene)과 똑같이 적어주세요!
+        LoadSceneByName("Title"); 
     }
 
     IEnumerator PlaySoundAndChangeScene(string sceneName)

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("게임 수치")]
     public float playerClickDamage = 15f;
     public int gold = 0;
-    public int targetKillCount = 15; // 목표 몬스터 수 (시작 숫자)
+    public int targetKillCount = 15; 
 
     [HideInInspector]
     public int remainingCount;       // 남은 몬스터 수
@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
     public GameObject stageClearPanel;
 
     [Header("사운드 에셋")]
-    public AudioClip stageClearSound; // :loud_sound: 스테이지 클리어 효과음 에셋
+    public AudioClip stageClearSound; // 스테이지 클리어
     public AudioClip gameOverSound;
     [Range(0f, 1f)]
-    public float soundVolume = 1.0f;  // 소리 크기 조절 (0~1)
+    public float soundVolume = 1.0f;  // 소리 크기
 
     private bool isStaegeCleared = false;
 
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // 중복 GameManager 바로 삭제
+            Destroy(gameObject); // 중복 GameManager 삭제
             return;
         }
     }
@@ -56,18 +56,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    // :bulb: 몬스터 처치 시 호출 (카운트 차감)
     public void AddKillCount()
     {
-        remainingCount -= 1; // 1씩 깎임
+        remainingCount -= 1;
         gold += 10;
 
-        // 0 이하로 내려가지 않게 방지
         if (remainingCount < 0) remainingCount = 0;
 
         UpdateUI();
 
-        // :bulb: 남은 몬스터 수가 0 이하가 되면 스테이지 클리어
+        // 0이 되면 클리어
         if (remainingCount <= 0 && !isStaegeCleared)
         {
             StageClear();
@@ -77,7 +75,7 @@ public class GameManager : MonoBehaviour
     public void UpdateUI()
     {
         if (killCountText != null)
-            killCountText.text = remainingCount.ToString(); // :bulb: 남은 숫자 표시
+            killCountText.text = remainingCount.ToString(); // 남은 숫자 표시(kill count를 몬스터 남은 수로 바꿈)
 
         if (goldText != null)
             goldText.text = gold.ToString();
@@ -87,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         isStaegeCleared = true;
 
-        // :loud_sound: 스테이지 클리어 효과음 재생 (Time.timeScale = 0f 상태에서도 멈추지 않고 끝까지 재생)
+        // 클리어 효과음
         if (stageClearSound != null)
         {
             Vector3 spawnPos = Camera.main != null ? Camera.main.transform.position : Vector3.zero;

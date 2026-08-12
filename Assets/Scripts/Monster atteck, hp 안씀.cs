@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour
         startY = transform.position.y;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // 💡 1. "Player" 태그를 가진 젤리를 찾습니다.
+        // 플레이어 태그 가진 젤리한테 움직임
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -43,16 +43,16 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        // 💡 2. 젤리를 향해 계속 이동 (Z축 이동 방지를 위해 Vector2로 처리)
+        // 젤리를 향해 이동 z축 이동 방지를 위해 vector2로 방지
         if (targetPlayer != null)
         {
-            // 실시간으로 젤리 위치를 추적하고 싶다면 아래 주석을 해제하세요.
+            // 실시간으로 젤리 위치를 추적하고 싶다면 아래 주석을 해제하세요. (ai 도움)
             // moveDirection = (targetPlayer.position - transform.position).normalized;
 
             transform.position += (Vector3)(moveDirection * moveSpeed * Time.deltaTime);
         }
 
-        // 3. 통통 튀는 연출
+        // 통통 튀는 연출
         bounceTimer += Time.deltaTime * bounceSpeed;
         float newY = startY + Mathf.Abs(Mathf.Sin(bounceTimer)) * bounceHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
@@ -73,7 +73,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
-        // 이미 죽은 상태면 중복 실행 안 함! (2씩 올라가는 것 방지)
+        // 죽은 상태에서 중복 실행 방지
         if (isDead) return;
         isDead = true;
 

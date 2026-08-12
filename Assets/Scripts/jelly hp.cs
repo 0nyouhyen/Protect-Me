@@ -14,7 +14,7 @@ public class JellyHealth : MonoBehaviour
     public GameObject gameOverCanvas;
 
     [Header("사운드 에셋")]
-    public AudioClip hitSound;       // 🔊 몬스터에게 맞았을 때 재생할 피격 효과음
+    public AudioClip hitSound;       // 피격 효과음
     [Range(0f, 1f)]
     public float soundVolume = 1.0f; // 소리 크기 조절 (0~1)
 
@@ -39,7 +39,7 @@ public class JellyHealth : MonoBehaviour
         currentHp -= damage;
         currentHp = Mathf.Max(currentHp, 0f);
 
-        // 🔊 피격 효과음 재생
+        // 피격 효과음 재생
         if (hitSound != null)
         {
             AudioSource.PlayClipAtPoint(hitSound, transform.position, soundVolume);
@@ -63,14 +63,12 @@ public class JellyHealth : MonoBehaviour
 
         Debug.Log("[JellyHealth] 젤리가 사망했습니다. 게임 오버!");
 
-        // 💡 GameManager의 GameOver()를 호출하여 패널, 사운드, 일시정지를 일괄 처리합니다.
         if (GameManager.Instance != null)
         {
             GameManager.Instance.GameOver();
         }
         else if (gameOverCanvas != null)
         {
-            // 만약 GameManager가 없을 경우 대비용 안전장치
             gameOverCanvas.SetActive(true);
             Time.timeScale = 0f;
         }
